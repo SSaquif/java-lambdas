@@ -14,6 +14,9 @@ Functional Programming using Java Lambdas, which was introduced in version 8
   - [Functions as Values](#functions-as-values)
     - [Inline Values](#inline-values)
     - [Lambda Expressions/Functions](#lambda-expressionsfunctions)
+    - [Inline functions](#inline-functions)
+  - [Complete Syntax: Reusing the Interface](#complete-syntax-reusing-the-interface)
+  - [Full Implementaion](#full-implementaion)
   - [Housekeeping](#housekeeping)
     - [Getting Started](#getting-started)
     - [Folder Structure](#folder-structure)
@@ -43,7 +46,7 @@ How we still had to create and extra class or thing that could perform the behva
 
 We did not pass the behaviour directly to the person, instead we passed in another thing that could perform the behaviour
 
-This is thee problem Lambdas and FP fixes
+This is the problem Lambdas and FP fixes
 
 ```java
 public class Person {
@@ -72,6 +75,8 @@ Those functions can be treated as values, `(ie first class functions, I think wh
 
 ## Functions as Values
 
+The syntax for the java code in this syntax is incorrect, see next section for correct code.
+
 ### Inline Values
 
 Objects and values themselves can be assigned to variables
@@ -90,12 +95,66 @@ Person p1 = new Person();
 
 Yes and it's basically JS's arrow function but the arrow is `->` instead of `=>`
 
-We don't need modifiers or return type for Lambda functions
+> We don't need modifiers or return type for Lambda functions. The compiler infers the return type automatically for lambdas
 
 ```java
 aBlockOFCode = (arguments) -> {
-    // code
+    System.out.println('Hello');
 }
+```
+
+In case of one liners, don't need `{}` as usual. Also just like in JS the return is implied and we don't have to use `return`
+
+In case of something like `System.out.println('Hello')`, on liners returns a void
+
+```java
+aBlockOFCode = () ->  System.out.println('Hello');
+
+doubleNumberFunction = (int a) -> a * 2;
+
+addFunction = (int a, int b) -> a + b;
+```
+
+### Inline functions
+
+Basically one half of the idea of a first class function, ie we can pass a function as an argument to another function.
+
+When we write the inner function directly inside the outter function, it's an inline function
+
+```java
+greet(()-> System.out.println('Hello'));
+```
+
+## Complete Syntax: Reusing the Interface
+
+<p width="800px">
+ <img src="./images/lambdas-anatomy.png" />
+</p>
+
+## Full Implementaion
+
+The `Greeting Interface` stays exactly the same
+
+```java
+public interface Greeting {
+    public void perform();
+}
+```
+
+The `Person class` can be updated as follows
+
+```java
+public class Person {
+
+    public static void main(String[] args) throws Exception {
+        Person p1 = new Person();
+        Greeting lambdaGreeting = () -> System.out.println("Hello");
+        // This is the differnence with JS
+        // We have to call lambdaGreeting.perform() instead of lambdaGreeting()
+        lambdaGreeting.perform();
+    }
+}
+
 ```
 
 ## Housekeeping
@@ -120,7 +179,3 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 ### Dependency Management
 
 The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
-
-```
-
-```

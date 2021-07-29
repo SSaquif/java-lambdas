@@ -9,8 +9,11 @@ public class Person {
         Person p1 = new Person();
         EnglishGreeting englishGreeting = new EnglishGreeting();
         FrenchGreeting frenchGreeting = new FrenchGreeting();
-
         p1.greet(englishGreeting);
         p1.greet(frenchGreeting);
+
+        Greeting lambdaGreeting = () -> System.out.println("Hello");
+        lambdaGreeting.perform();
+
     }
 }
