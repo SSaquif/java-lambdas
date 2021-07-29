@@ -9,11 +9,13 @@ public class Person {
         Person p1 = new Person();
         EnglishGreeting englishGreeting = new EnglishGreeting();
         FrenchGreeting frenchGreeting = new FrenchGreeting();
-        p1.greet(englishGreeting);
-        p1.greet(frenchGreeting);
+        p1.greet(englishGreeting); // Good Morning
+        p1.greet(frenchGreeting); // Bonjour
 
         Greeting lambdaGreeting = () -> System.out.println("Hello");
-        lambdaGreeting.perform();
+        lambdaGreeting.perform(); // Hello
+
+        p1.greet(lambdaGreeting); // Hello
 
     }
 }

@@ -2,6 +2,8 @@
 
 Functional Programming using Java Lambdas, which was introduced in version 8
 
+[Playlist Link](https://www.youtube.com/watch?v=kpK2e343v48&list=PLqq-6Pq4lTTa9YGfyhyW2CqdtW9RtY-I3&index=9)
+
 ## Contents
 
 <!-- toc -->
@@ -17,6 +19,7 @@ Functional Programming using Java Lambdas, which was introduced in version 8
     - [Inline functions](#inline-functions)
   - [Complete Syntax: Reusing the Interface](#complete-syntax-reusing-the-interface)
   - [Full Implementaion](#full-implementaion)
+  - [Anonymous Inner Class VS Lambdas](#anonymous-inner-class-vs-lambdas)
   - [Housekeeping](#housekeeping)
     - [Getting Started](#getting-started)
     - [Folder Structure](#folder-structure)
@@ -152,9 +155,43 @@ public class Person {
         // This is the differnence with JS
         // We have to call lambdaGreeting.perform() instead of lambdaGreeting()
         lambdaGreeting.perform();
+
+        // We can also do this
+        p1.greet(lambdaGreeting);
     }
 }
 
+```
+
+## Anonymous Inner Class VS Lambdas
+
+`They are not the same`, even though you might be tempted to think that.
+
+Lambda Functions are `NOT Syntactical Sugar` or Anonymous Inner Functions
+
+```java
+public class Person {
+    public void greet(Greeting greeting) {
+        greeting.perform();
+    }
+
+    public static void main(String[] args) throws Exception {
+        Person p1 = new Person();
+
+        // Lambda
+        Greeting lambdaGreeting = () -> System.out.println("Hello");
+        lambdaGreeting.perform();
+
+
+        //Anonymous Inner Class
+        Greeting innerClassGreeting = new Greeting(){
+            public void perform(){
+                System.out.println("Hello");
+            }
+        }
+        innerClassGreeting.perform();
+    }
+}
 ```
 
 ## Housekeeping
